@@ -15,7 +15,7 @@ height = 3
 
 #   Screen
 row = 0
-screen = tk.Label(frame, width = 4*(width + 1), height = height, bg = "lightgray", relief = "sunken", text = "")
+screen = tk.Label(frame, width = 4*(width + 1), height = height, bg = "lightgray", relief = "sunken", text = "", justify = "right")
 screen.grid(row = row, column = 0, columnspan = 4, sticky = "we")
 
 
@@ -93,11 +93,13 @@ digits["6"].bind("<Button-1>", lambda event: calculator.digits.append_digit(scre
 digits["7"].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["7"]))
 digits["8"].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["8"]))
 digits["9"].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["9"]))
+
 operators["+"].bind("<Button-1>", lambda event: calculator.append_operator(screen, operators["+"]))
 operators["-"].bind("<Button-1>", lambda event: calculator.append_operator(screen, operators["-"]))
 operators["*"].bind("<Button-1>", lambda event: calculator.append_operator(screen, operators["*"]))
 operators["/"].bind("<Button-1>", lambda event: calculator.append_operator(screen, operators["/"]))
 operators["^"].bind("<Button-1>", lambda event: calculator.append_operator(screen, operators["^"]))
+
 specials["c"].bind("<Button-1>", lambda event: calculator.clear(screen))
 specials["="].bind("<Button-1>", lambda event: calculator.solve(screen))
 
