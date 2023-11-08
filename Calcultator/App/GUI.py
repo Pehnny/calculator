@@ -82,10 +82,22 @@ operators["/"].grid(row = row, column = 3, sticky = "e")
 
 
 #   Bind Buttons
-for key, button in digits.items():
-    button.bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, button))
-for key, button in operators.items():
-    button.bind("<Button-1>", lambda event: calculator.append_operator(screen, button))
+digits["0"].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["0"]))
+digits["."].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["."]))
+digits["1"].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["1"]))
+digits["2"].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["2"]))
+digits["3"].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["3"]))
+digits["4"].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["4"]))
+digits["5"].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["5"]))
+digits["6"].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["6"]))
+digits["7"].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["7"]))
+digits["8"].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["8"]))
+digits["9"].bind("<Button-1>", lambda event: calculator.digits.append_digit(screen, digits["9"]))
+operators["+"].bind("<Button-1>", lambda event: calculator.append_operator(screen, operators["+"]))
+operators["-"].bind("<Button-1>", lambda event: calculator.append_operator(screen, operators["-"]))
+operators["*"].bind("<Button-1>", lambda event: calculator.append_operator(screen, operators["*"]))
+operators["/"].bind("<Button-1>", lambda event: calculator.append_operator(screen, operators["/"]))
+operators["^"].bind("<Button-1>", lambda event: calculator.append_operator(screen, operators["^"]))
 specials["c"].bind("<Button-1>", lambda event: calculator.clear(screen))
 specials["="].bind("<Button-1>", lambda event: calculator.solve(screen))
 

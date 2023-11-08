@@ -15,13 +15,15 @@ class Calculator:
         self.operator: Operator = Operator()
 
     def append_operator(self, screen: tk.Label, button: tk.Button) -> None:
-        if len(self.__queue) == 0:
-            return
-        if self.__queue[-1] in self.__operations.keys():
-            self.__queue[-1] = button["text"]
-        elif screen["text"] != "":
-            self.__queue.extend([screen["text"], button["text"]])
+        if screen["text"] != "":
+            if len(self.__queue) == 1:
+                self.__queue.append(button["text"])
+            else:
+                self.__queue.extend([screen["text"], button["text"]])
             screen["text"] = ""
+        elif self.__queue[-1] in self.__operations.keys():
+            self.__queue[-1] = button["text"]
+        print(self.__queue)
 
     def clear(self, screen: tk.Label) -> None:
         if screen["text"] != "":
@@ -34,8 +36,9 @@ class Calculator:
             return
         if screen["text"] != "":
             self.__queue.append(screen["text"])
+            print(self.__queue)
         while len(self.__queue) > 1:
-            index: int = self.__order_of_operations.index()
+            index: int = self.__order_of_operations.index(self.__queue)
             if index == 0:
                 break
             if index == len(self.__queue):
@@ -47,11 +50,12 @@ class Calculator:
             try:
                 self.__queue[index-1] = str(self.operator.operation.operate(a, b))
             except ZeroDivisionError:
-                screen["text"] = "Zero Division Error"
-                sleep(3)
-                screen["text"] = ""
-                self.clear()
-                break
+                screen["text"] = "Error !"
+                sleep(5)
+                self.clear(screen)
+                self.clear(screen)
+                return
         screen["text"] = self.__queue[0]
+        print(self.__queue)
     
 calculator = Calculator()

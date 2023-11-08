@@ -2,5 +2,5 @@ from abc import ABCMeta, abstractmethod
 
 class IOperation(metaclass = ABCMeta):
     @abstractmethod
-    def operate(a: float, b: float) -> float:
+    def operate(self, a: float, b: float) -> float:
         pass
