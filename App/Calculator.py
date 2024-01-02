@@ -14,7 +14,6 @@ class Calculator:
         self.operator: Operator = Operator()
 
     def append_operator(self, screen: tk.Label, button: tk.Button) -> None:
-        print(self.__queue)
         match len(self.__queue):
             case 0:
                 if screen["text"] == "":
@@ -28,7 +27,7 @@ class Calculator:
                 else:
                     self.__queue.extend([screen["text"], button["text"]])
         screen["text"] = ""
-        print(self.__queue)
+        # print(self.__queue)
 
     def clear(self, screen: tk.Label) -> None:
         if screen["text"] == "" or len(self.__queue) == 1:
@@ -40,7 +39,7 @@ class Calculator:
             return
         if screen["text"] != "":
             self.__queue.append(screen["text"])
-            print(self.__queue)
+            # print(self.__queue)
         while len(self.__queue) > 1:
             index: int = self.__order_of_operations.index(self.__queue)
             if index == 0:
@@ -59,6 +58,6 @@ class Calculator:
                 screen.after(5000, self.clear, screen)
                 return
         screen["text"] = self.__queue[0]
-        print(self.__queue)
+        # print(self.__queue)
     
 calculator = Calculator()
