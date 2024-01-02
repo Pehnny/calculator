@@ -1,5 +1,4 @@
 import tkinter as tk
-from time import sleep
 from App.Strategies.IOperation import IOperation
 from App.Context.Operator import Operator
 from App.Digits import Digits
@@ -15,6 +14,7 @@ class Calculator:
         self.operator: Operator = Operator()
 
     def append_operator(self, screen: tk.Label, button: tk.Button) -> None:
+        print(self.__queue)
         match len(self.__queue):
             case 0:
                 if screen["text"] == "":
@@ -23,10 +23,10 @@ class Calculator:
             case 1:
                 self.__queue.append(button["text"])
             case _:
-                if self.__queue[-1] in self.__operations.keys():
+                if screen["text"] == "":
                     self.__queue[-1] = button["text"]
-                    return
-                self.__queue.extend([screen["text"], button["text"]])
+                else:
+                    self.__queue.extend([screen["text"], button["text"]])
         screen["text"] = ""
         print(self.__queue)
 
